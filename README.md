@@ -212,12 +212,12 @@ Pengembangan aplikasi dilakukan secara bertahap dengan menerapkan materi praktik
 ## Pengembang
 
 - **Nama Proyek:** Aplikasi Pengelolaan Pengeluaran Mahasiswa
-- **Kelompok:** [6]
+- **Kelompok:** 6
 - **Anggota:**
-- [Moh Reski Hidayat_F5212520091
+- Moh Reski Hidayat_F5212520091
 - Ardhita Amarli Putri_F5212530109
 - Dinda Aulia Rizkyanti Putri_F5212530105
-- Rifka Anggraini_F5212530115]
+- Rifka Anggraini_F5212530115
 - **Program Studi:** Sistem Informasi
 - **Fakultas:** Teknik
 - **Universitas:** Universitas Tadulako
