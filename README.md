@@ -1,43 +1,66 @@
 # Aplikasi Pengelolaan Pengeluaran Mahasiswa
 
-Aplikasi desktop untuk membantu mahasiswa mencatat dan mengelola pengeluaran
-sehari-hari dalam satu tempat.
+Aplikasi desktop berbasis Python yang dirancang untuk membantu mahasiswa mencatat, mengelola, dan memantau pengeluaran sehari-hari. Aplikasi ini dilengkapi dengan sistem autentikasi pengguna, animasi pada halaman login, serta basis data MySQL yang mendukung penggunaan oleh banyak mahasiswa.
 
 ## Deskripsi Proyek
 
-Aplikasi Pengelolaan Pengeluaran Mahasiswa dirancang untuk memudahkan
-mahasiswa mencatat transaksi pengeluaran, mengelompokkan pengeluaran
-berdasarkan kategori, melihat riwayat transaksi, serta memantau jumlah
-pengeluaran dalam periode tertentu.
+Aplikasi Pengelolaan Pengeluaran Mahasiswa merupakan aplikasi desktop yang dikembangkan untuk memudahkan mahasiswa dalam mengelola keuangan pribadi, khususnya dalam mencatat dan memantau pengeluaran sehari-hari.
 
-Proyek ini dikembangkan sebagai proyek praktikum Rekayasa Perangkat
-Lunak dengan menerapkan arsitektur Model-View-Controller (MVC), basis
-data relasional MySQL, dan operasi CRUD.
+Aplikasi ini memungkinkan setiap mahasiswa untuk membuat akun, melakukan login, mencatat transaksi pengeluaran, mengelompokkan pengeluaran berdasarkan kategori, melihat riwayat transaksi, serta memantau total pengeluaran.
+
+Berbeda dengan versi sebelumnya yang hanya dapat digunakan oleh satu mahasiswa, versi terbaru telah dilengkapi dengan sistem multi-user. Setiap mahasiswa dapat memiliki akun sendiri sehingga data pengeluaran dapat dikelola secara terpisah berdasarkan akun yang digunakan.
+
+Proyek ini dikembangkan sebagai proyek praktikum Rekayasa Perangkat Lunak dengan menerapkan arsitektur Model-View-Controller (MVC), basis data relasional MySQL, sistem autentikasi, dan operasi CRUD (Create, Read, Update, Delete).
 
 ## Fitur Utama
 
--   Mengelola kategori pengeluaran.
--   Menambahkan dan melihat data pengeluaran.
--   Mencatat tanggal, jumlah, dan deskripsi pengeluaran.
--   Mengelompokkan pengeluaran, misalnya makanan, transportasi, kebutuhan kuliah, dan hiburan.
--   Melihat riwayat pengeluaran yang telah dicatat.
--   Menampilkan ringkasan total pengeluaran melalui antarmuka desktop.
+### 1. Sistem Autentikasi
+- Registrasi akun mahasiswa baru.
+- Login menggunakan akun yang telah terdaftar.
+- Logout untuk mengakhiri sesi pengguna.
+- Animasi pada halaman login untuk memberikan tampilan antarmuka yang lebih menarik.
+- Setiap mahasiswa dapat menggunakan akun masing-masing.
+
+### 2. Pengelolaan Pengeluaran
+- Menambahkan data pengeluaran.
+- Melihat daftar pengeluaran.
+- Mengubah data pengeluaran.
+- Menghapus data pengeluaran.
+- Mencatat tanggal, jumlah, dan deskripsi pengeluaran.
+
+### 3. Pengelolaan Kategori
+- Mengelola kategori pengeluaran.
+- Mengelompokkan pengeluaran berdasarkan kategori, seperti makanan, transportasi, kebutuhan kuliah, dan hiburan.
+
+### 4. Riwayat dan Ringkasan Pengeluaran
+- Melihat riwayat transaksi pengeluaran.
+- Menampilkan total pengeluaran.
+- Memantau pengeluaran berdasarkan data transaksi yang telah dicatat.
+
+### 5. Sistem Multi-User
+- Mendukung penggunaan oleh lebih dari satu mahasiswa.
+- Setiap mahasiswa memiliki akun tersendiri.
+- Data pengeluaran dikelola berdasarkan pengguna yang sedang login.
+- Menggunakan MySQL sebagai tempat penyimpanan data secara terpusat.
 
 ## Teknologi yang Digunakan
 
--   **Bahasa pemrograman:** Python
--   **Antarmuka desktop:** CustomTkinter
--   **Basis data:** MySQL
--   **Server basis data lokal:** Laragon
--   **Konektor basis data:** mysql-connector-python
--   **Arsitektur:** Model-View-Controller (MVC)
--   **Editor kode:** Visual Studio Code
--   **Version control:** Git dan GitHub
--   **Lingkungan virtual:** Python `venv`
+| Teknologi | Keterangan |
+|---|---|
+| Python | Bahasa pemrograman utama |
+| CustomTkinter | Pembuatan antarmuka desktop |
+| MySQL | Sistem manajemen basis data |
+| Laragon | Server basis data lokal |
+| mysql-connector-python | Konektor Python dengan MySQL |
+| MVC | Arsitektur aplikasi |
+| Visual Studio Code | Editor kode |
+| Git | Version control |
+| GitHub | Penyimpanan repository proyek |
+| Python venv | Lingkungan virtual |
 
 ## Struktur Proyek
 
-``` text
+```text
 Modul5/
 ├── config/
 │   └── database.py
@@ -51,20 +74,23 @@ Modul5/
 └── README.md
 ```
 
-Struktur tersebut merupakan rancangan awal. File dan folder dapat
-disesuaikan dengan implementasi serta instruksi pada Modul I--V.
+Struktur folder dan file dapat berkembang mengikuti implementasi aplikasi.
 
 ## Struktur Basis Data
 
 Nama basis data: `db_pengeluaran_mahasiswa`
 
-Tabel yang direncanakan:
+Basis data MySQL digunakan untuk menyimpan informasi akun mahasiswa dan transaksi pengeluaran.
 
 | Tabel | Keterangan |
 |---|---|
-| `mahasiswa` | Menyimpan identitas mahasiswa. |
-| `kategori` | Menyimpan nama kategori pengeluaran, seperti makanan, transportasi, kebutuhan kuliah, dan hiburan. |
-| `pengeluaran` | Menyimpan tanggal, jumlah, deskripsi, dan kategori dari setiap transaksi pengeluaran. |
+| `mahasiswa` | Menyimpan data identitas dan akun mahasiswa yang telah terdaftar. |
+| `kategori` | Menyimpan kategori pengeluaran, seperti makanan, transportasi, kebutuhan kuliah, dan hiburan. |
+| `pengeluaran` | Menyimpan data transaksi pengeluaran, termasuk tanggal, jumlah, deskripsi, kategori, dan keterkaitan dengan mahasiswa. |
+
+**Pengelolaan Data Multi-User**
+
+Setiap mahasiswa memiliki identitas akun yang berbeda. Data transaksi pengeluaran dikaitkan dengan mahasiswa yang sedang login sehingga setiap pengguna dapat mengelola data pengeluarannya masing-masing.
 
 ## Persiapan dan Instalasi
 
@@ -72,104 +98,126 @@ Tabel yang direncanakan:
 
 Pastikan perangkat telah memiliki:
 
--   Python 3
--   Visual Studio Code
--   Laragon dengan MySQL
--   Git
+- Python 3.
+- Visual Studio Code.
+- Laragon dengan MySQL.
+- Git.
 
-### 2. Buka folder proyek
+### 2. Buka Folder Proyek
 
-Buka folder proyek ini melalui Visual Studio Code, kemudian buka
-terminal terintegrasi.
+Buka folder proyek melalui Visual Studio Code, kemudian buka terminal terintegrasi.
 
-### 3. Buat lingkungan virtual
+### 3. Buat Lingkungan Virtual
 
-Jalankan perintah berikut di terminal:
+Jalankan perintah berikut:
 
-``` powershell
+```powershell
 py -m venv env
 ```
 
 Aktifkan lingkungan virtual pada Windows PowerShell:
 
-``` powershell
+```powershell
 .\env\Scripts\Activate.ps1
 ```
 
-### 4. Instal pustaka yang dibutuhkan
+### 4. Instal Pustaka yang Dibutuhkan
 
-``` powershell
+Jalankan perintah berikut:
+
+```powershell
 python -m pip install --upgrade pip
-pip install customtkinter mysql-connector-python
+pip install -r requirements.txt
 ```
 
-### 5. Siapkan basis data
+Pastikan seluruh pustaka yang digunakan aplikasi telah tercantum dalam file `requirements.txt`.
 
-1.  Buka Laragon.
-2.  Jalankan layanan MySQL.
-3.  Buat basis data bernama `db_pengeluaran_mahasiswa`.
-4.  Buat tabel `mahasiswa`, `kategori`, dan `pengeluaran` sesuai struktur basis data proyek.
-5.  Sesuaikan konfigurasi koneksi database dengan pengaturan MySQL
-    lokal.
+### 5. Siapkan Basis Data
 
-Jangan menyimpan kata sandi atau informasi rahasia di repository publik.
-Gunakan konfigurasi lokal yang aman.
+1. Buka aplikasi Laragon.
+2. Jalankan layanan MySQL.
+3. Buka phpMyAdmin atau pengelola basis data lainnya.
+4. Buat basis data dengan nama `db_pengeluaran_mahasiswa`.
+5. Buat tabel `mahasiswa`, `kategori`, dan `pengeluaran` sesuai struktur basis data proyek.
+6. Sesuaikan konfigurasi koneksi database pada file konfigurasi aplikasi.
 
-### 6. Jalankan aplikasi
+Pastikan konfigurasi database telah sesuai dengan pengaturan MySQL lokal.
 
-Setelah file aplikasi dan konfigurasi selesai dibuat, jalankan aplikasi
-melalui terminal:
+Jangan mengunggah kata sandi database atau informasi rahasia ke repository publik.
 
-``` powershell
+### 6. Jalankan Aplikasi
+
+Setelah instalasi pustaka dan konfigurasi database selesai, jalankan aplikasi melalui terminal:
+
+```powershell
 python app.py
 ```
 
-Perintah tersebut digunakan jika `app.py` telah menjadi titik masuk
-aplikasi.
+Aplikasi akan dijalankan melalui halaman awal yang menyediakan akses menuju fitur autentikasi pengguna.
 
 ## Arsitektur MVC
 
--   **Model:** mengelola data dan komunikasi dengan MySQL.
--   **View:** menampilkan antarmuka desktop menggunakan CustomTkinter.
--   **Controller:** menghubungkan tindakan pengguna dengan proses pada
-    Model dan tampilan pada View.
+Aplikasi menerapkan arsitektur Model-View-Controller (MVC) untuk memisahkan pengelolaan data, tampilan antarmuka, dan logika aplikasi.
+
+- **Model:** Mengelola data aplikasi serta komunikasi dengan basis data MySQL.
+- **View:** Menampilkan antarmuka aplikasi, termasuk halaman login, registrasi, dan halaman utama menggunakan CustomTkinter.
+- **Controller:** Menghubungkan tindakan pengguna dengan proses pada Model dan tampilan pada View, termasuk proses autentikasi dan pengelolaan pengeluaran.
 
 ## Version Control dengan Git
 
+Git digunakan untuk mengelola perubahan kode selama proses pengembangan aplikasi, sedangkan GitHub digunakan sebagai tempat penyimpanan repository proyek.
+
 Untuk memeriksa status perubahan:
 
-``` bash
+```bash
 git status
 ```
 
-Untuk menambahkan dan menyimpan perubahan:
+Untuk menambahkan perubahan:
 
-``` bash
+```bash
 git add .
-git commit -m "Initial project setup"
 ```
 
-Repository GitHub dapat dihubungkan sesuai konfigurasi repository
-kelompok. Jangan mengunggah folder `env/`, kata sandi, atau konfigurasi
-rahasia.
+Untuk menyimpan perubahan:
+
+```bash
+git commit -m "Update fitur aplikasi"
+```
+
+Untuk mengunggah perubahan ke GitHub:
+
+```bash
+git push origin main
+```
+
+Jangan mengunggah folder `env/`, kata sandi, maupun konfigurasi database yang bersifat rahasia.
 
 ## Status Pengembangan
 
-Proyek dikembangkan secara bertahap mengikuti materi praktikum Modul
-I--V. Fitur dan struktur akhir akan disesuaikan dengan implementasi yang
-telah diuji.
+Aplikasi telah mengalami pengembangan dari versi awal yang hanya mendukung satu mahasiswa menjadi aplikasi desktop dengan sistem multi-user.
+
+Pengembangan terbaru mencakup:
+
+- Penambahan halaman login.
+- Penambahan animasi pada halaman login.
+- Penambahan halaman registrasi akun mahasiswa.
+- Penambahan fitur logout.
+- Penerapan sistem autentikasi pengguna.
+- Pengembangan basis data MySQL untuk mendukung banyak akun mahasiswa.
+- Pengelolaan data pengeluaran berdasarkan akun mahasiswa yang sedang login.
+
+Pengembangan aplikasi dilakukan secara bertahap dengan menerapkan materi praktikum Rekayasa Perangkat Lunak Modul I–V.
 
 ## Pengembang
 
--   **Nama proyek:** Aplikasi Pengelolaan Pengeluaran Mahasiswa
--   **Kelompok:** \[Isi nama atau nomor kelompok\]
--   **Anggota:** \[Isi nama dan NIM anggota kelompok\]
--   **Program Studi:** Sistem Informasi
--   **Fakultas:** Teknik
--   **Universitas:** Universitas Tadulako
+- **Nama Proyek:** Aplikasi Pengelolaan Pengeluaran Mahasiswa
+- **Kelompok:** [Isi nama atau nomor kelompok]
+- **Anggota:** [Isi nama dan NIM anggota kelompok]
+- **Program Studi:** Sistem Informasi
+- **Fakultas:** Teknik
+- **Universitas:** Universitas Tadulako
 
-------------------------------------------------------------------------
+---
 
-README ini merupakan dokumentasi awal proyek dan perlu diperbarui ketika
-implementasi aplikasi berubah.
-
+README ini merupakan dokumentasi proyek yang menjelaskan tujuan, fitur, teknologi, struktur basis data, serta petunjuk instalasi dan penggunaan Aplikasi Pengelolaan Pengeluaran Mahasiswa.
