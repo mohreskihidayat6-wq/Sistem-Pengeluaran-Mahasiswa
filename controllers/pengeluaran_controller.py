@@ -1,4 +1,3 @@
-
 from models.pengeluaran_model import (
     get_all_pengeluaran,
     tambah_pengeluaran,
@@ -9,19 +8,21 @@ from models.pengeluaran_model import (
 
 class PengeluaranController:
 
+    def __init__(self, id_user=None):
+        self.id_user = id_user
+
     def tampilkan_pengeluaran(self):
-        return get_all_pengeluaran()
+        return get_all_pengeluaran(self.id_user)
 
     def tambah(
         self,
-        id_mahasiswa,
         id_kategori,
         tanggal,
         nominal,
         deskripsi
     ):
         return tambah_pengeluaran(
-            id_mahasiswa,
+            self.id_user,
             id_kategori,
             tanggal,
             nominal,
@@ -31,15 +32,14 @@ class PengeluaranController:
     def ubah(
         self,
         id_pengeluaran,
-        id_mahasiswa,
         id_kategori,
         tanggal,
         nominal,
         deskripsi
     ):
         return ubah_pengeluaran(
+            self.id_user,
             id_pengeluaran,
-            id_mahasiswa,
             id_kategori,
             tanggal,
             nominal,
@@ -47,4 +47,4 @@ class PengeluaranController:
         )
 
     def hapus(self, id_pengeluaran):
-        return hapus_pengeluaran(id_pengeluaran)
+        return hapus_pengeluaran(self.id_user, id_pengeluaran)

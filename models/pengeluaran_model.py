@@ -1,8 +1,7 @@
-
 from config.database import get_connection
 
 
-def get_all_pengeluaran():
+def get_all_pengeluaran(id_user):
     connection = get_connection()
 
     if connection is None:
@@ -16,21 +15,21 @@ def get_all_pengeluaran():
         query = """
             SELECT
                 p.id_pengeluaran,
-                m.nama,
-                m.nim,
+                u.nama_lengkap AS nama_user,
                 k.nama_kategori,
                 p.tanggal,
                 p.nominal,
                 p.deskripsi
             FROM pengeluaran p
-            JOIN mahasiswa m
-                ON p.id_mahasiswa = m.id_mahasiswa
+            JOIN users u
+                ON p.id_user = u.id_user
             JOIN kategori k
                 ON p.id_kategori = k.id_kategori
+            WHERE p.id_user = %s
             ORDER BY p.tanggal DESC
         """
 
-        cursor.execute(query)
+        cursor.execute(query, (id_user,))
         return cursor.fetchall()
 
     except Exception as e:
@@ -44,7 +43,7 @@ def get_all_pengeluaran():
 
 
 def tambah_pengeluaran(
-    id_mahasiswa,
+    id_user,
     id_kategori,
     tanggal,
     nominal,
@@ -62,12 +61,12 @@ def tambah_pengeluaran(
 
         query = """
             INSERT INTO pengeluaran
-            (id_mahasiswa, id_kategori, tanggal, nominal, deskripsi)
+            (id_user, id_kategori, tanggal, nominal, deskripsi)
             VALUES (%s, %s, %s, %s, %s)
         """
 
         values = (
-            id_mahasiswa,
+            id_user,
             id_kategori,
             tanggal,
             nominal,
@@ -91,8 +90,8 @@ def tambah_pengeluaran(
 
 
 def ubah_pengeluaran(
+    id_user,
     id_pengeluaran,
-    id_mahasiswa,
     id_kategori,
     tanggal,
     nominal,
@@ -110,21 +109,21 @@ def ubah_pengeluaran(
 
         query = """
             UPDATE pengeluaran
-            SET id_mahasiswa = %s,
-                id_kategori = %s,
+            SET id_kategori = %s,
                 tanggal = %s,
                 nominal = %s,
                 deskripsi = %s
             WHERE id_pengeluaran = %s
+              AND id_user = %s
         """
 
         values = (
-            id_mahasiswa,
             id_kategori,
             tanggal,
             nominal,
             deskripsi,
-            id_pengeluaran
+            id_pengeluaran,
+            id_user
         )
 
         cursor.execute(query, values)
@@ -143,7 +142,7 @@ def ubah_pengeluaran(
         connection.close()
 
 
-def hapus_pengeluaran(id_pengeluaran):
+def hapus_pengeluaran(id_user, id_pengeluaran):
     connection = get_connection()
 
     if connection is None:
@@ -157,9 +156,10 @@ def hapus_pengeluaran(id_pengeluaran):
         query = """
             DELETE FROM pengeluaran
             WHERE id_pengeluaran = %s
+              AND id_user = %s
         """
 
-        cursor.execute(query, (id_pengeluaran,))
+        cursor.execute(query, (id_pengeluaran, id_user))
         connection.commit()
 
         return cursor.rowcount > 0
