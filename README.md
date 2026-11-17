@@ -80,18 +80,18 @@ Struktur folder dan file dapat berkembang mengikuti implementasi aplikasi.
 
 Nama basis data: `db_pengeluaran_mahasiswa`
 
-Basis data MySQL digunakan untuk menyimpan informasi akun mahasiswa dan transaksi pengeluaran.
+Basis data MySQL digunakan untuk menyimpan informasi akun pengguna, data mahasiswa, kategori, serta transaksi pengeluaran.
 
 | Tabel | Keterangan |
 |---|---|
-| `mahasiswa` | Menyimpan data identitas dan akun mahasiswa yang telah terdaftar. |
+| `users` | Menyimpan informasi akun pengguna yang digunakan untuk proses registrasi dan login. |
+| `mahasiswa` | Menyimpan data identitas mahasiswa yang terdaftar. |
 | `kategori` | Menyimpan kategori pengeluaran, seperti makanan, transportasi, kebutuhan kuliah, dan hiburan. |
-| `pengeluaran` | Menyimpan data transaksi pengeluaran, termasuk tanggal, jumlah, deskripsi, kategori, dan keterkaitan dengan mahasiswa. |
+| `pengeluaran` | Menyimpan data transaksi pengeluaran, termasuk tanggal, jumlah, deskripsi, kategori, dan keterkaitan dengan pengguna atau mahasiswa. |
 
-**Pengelolaan Data Multi-User**
+### Pengelolaan Data Multi-User
 
-Setiap mahasiswa memiliki identitas akun yang berbeda. Data transaksi pengeluaran dikaitkan dengan mahasiswa yang sedang login sehingga setiap pengguna dapat mengelola data pengeluarannya masing-masing.
-
+Setiap pengguna memiliki akun masing-masing yang digunakan untuk mengakses aplikasi. Sistem mengelola data pengeluaran berdasarkan pengguna yang sedang login sehingga setiap mahasiswa dapat mencatat dan melihat pengeluarannya sendiri.
 ## Persiapan dan Instalasi
 
 ### 1. Prasyarat
